@@ -1,48 +1,97 @@
 package ad300;
 
-public class Circle {
-	
-	// Static data field
-	private static int numberOfObjects = 0;
+/*
+ * This is the class for circle objects
+ * @author Lenny Brown
+ */
+public class Circle extends GeometricObject{
 	
 	// data field
 	private double radius;
 	
-	// Initialize the circle object to have a defualt radius of 1
-	public Circle() {
-		radius = 1.0;
-		numberOfObjects++;
+	/*
+	 * This is the constructor that gets passed no parameters. 
+	 */
+	public Circle () {        
+	 
 	}
 	
-	// Initialize with custom radius
-	public Circle(double newRadius) {
-		radius = newRadius;
-		numberOfObjects++;
+	/*
+	 * This is the constructor that gets passed only the radius. 
+	 * It sets the radius field.
+	 * @param radius The radius of the circle.
+	 */
+	public Circle(double radius) {
+		this.radius = radius;
 	}
 	
-	// Get the radius of the circle
+	/*
+	 * This is the constructor that gets passed all parameters. 
+	 * It sets the radius field, then passes color and filled
+	 * to the super class to be set by the setX functions.
+	 * @param radius The radius of the circle
+	 * @param color The color of the circle
+	 * @param filled The filled status of the circle
+	 */
+	public Circle(double radius, String color, boolean filled) {
+		super(color, filled);
+		this.radius = radius;
+	}
+	
+	/*
+	 * This returns the radius of the circle.
+	 * @return The radius of the circle
+	 */
 	public double getRadius() {
 		return radius;
 	}
 	
-	// Get the area of the circle
+	/*
+	 * This returns the diameter of the circle.
+	 * @return The diameter of the circle
+	 */
+	public double getDiameter() {
+		return 2 * radius;
+	}
+	
+	/*
+	 * This sets the radius to a new radius
+	 * @param radious The new radius
+	 */
+	public void setRadius(double radius) {
+		this.radius = (radius >= 0) ? radius : 0;
+	}
+	
+	/*
+	 * This returns the area of the circle.
+	 * @return The area of the circle
+	 */
 	public double getArea() {
 		return radius * radius * Math.PI;
 	}
 	
-	// Get the parameter of the circle
-	public double getParameter() {
+	/*
+	 * This returns the perimeter of the circle.
+	 * @return The perimeter of the circle
+	 */	
+	public double getPerimeter() {
 		return 2 * radius * Math.PI;
 	}
-
-	// Get the number of instances created
-	public static int getNumberOfObjects() {
-		return numberOfObjects;
+	
+	/*
+	 * This prints the descriptive circle info
+	 */
+	public void printCircle() {
+		System.out.println("The circle is created " + getDateCreated() +
+				" and the radius is " + radius);
 	}
 	
-	// Set the data field radius to a new radius
-	public void setRadius(double newRadius) {
-		radius = (newRadius >= 0) ? newRadius : 0;
+	/*
+	 * This method returns a formatted string describing the circle.
+	 * @return The descriptive formatted string for the circle
+	 */
+	@Override
+	public String toString() {
+		return super.toString() + "\nradisu is " + radius;
 	}
-	
 }
